@@ -9,12 +9,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        progressBar.setOnClickListener {
-            if (progressBar.isRotating) {
-                progressBar.stopRotation()
-            } else {
-                progressBar.startRotation()
-            }
+        progressBar.progress = 5
+
+        updateBtn.setOnClickListener {
+            progressBar.progress = progressValue.text.toString().toInt()
         }
     }
 }

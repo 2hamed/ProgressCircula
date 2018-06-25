@@ -21,15 +21,15 @@ class CircularProgressBar(context: Context, attributeSet: AttributeSet? = null, 
     private val oval = RectF()
 
     var step = 0
-    var isRotating = false
+    var isRotating = true
+    var progress = 0
+    private var currentProgress = 0
 
-    private var sweepAngle = 50F
-    var targetSweepAngle = sweepAngle
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        step += 5
+        step += 3
 
         val width = width.toFloat()
         val height = height.toFloat()
@@ -41,30 +41,33 @@ class CircularProgressBar(context: Context, attributeSet: AttributeSet? = null, 
             width / 2
         } - paddingBottom
 
-        path.addCircle(width / 2,
-                height / 2, radius,
-                Path.Direction.CW)
-        val center_x: Float
-        val center_y: Float
+        val centerX = width / 2
+        val centerY = height / 2
 
-
-        center_x = width / 2
-        center_y = height / 2
-
-        oval.set(center_x - radius,
-                center_y - radius,
-                center_x + radius,
-                center_y + radius)
+        oval.set(centerX - radius,
+                centerY - radius,
+                centerX + radius,
+                centerY + radius)
         canvas.drawArc(oval, step % 360F, calculateSweepAngle(), false, outerRim)
         if (isRotating)
             postInvalidateDelayed(10)
+        if (step >= 360) {
+            step = 0
+        }
     }
 
     private fun calculateSweepAngle(): Float {
-        if (sweepAngle < targetSweepAngle) {
-            sweepAngle++
+        if (currentProgress < progress) {
+            currentProgress++
+        } else if (currentProgress > progress) {
+            currentProgress--
         }
-        return sweepAngle
+
+        /*if (currentProgress >= 100) {
+            isRotating = false
+        }*/
+
+        return currentProgress * 360 / 100F
     }
 
     fun startRotation() {
