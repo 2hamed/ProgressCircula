@@ -4,4 +4,4 @@
 
 ProgressCircula is a lightweight customisable ProgressBar view for Android. It has been written entirely in Kotlin and it includes only one file.
 
-![Showcase](showcase.gif)
+![Showcase](showcase.gif|width=250|height=445)
