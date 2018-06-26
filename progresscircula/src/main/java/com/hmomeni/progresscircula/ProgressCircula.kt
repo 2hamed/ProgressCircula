@@ -1,7 +1,6 @@
 package com.hmomeni.progresscircula
 
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
@@ -13,18 +12,6 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
 
     private val oval = RectF()
     private val textBounds = Rect()
-
-    private val outerRim = Paint().apply {
-        color = Color.RED
-        strokeWidth = dpToPx(3).toFloat()
-        style = Paint.Style.STROKE
-        strokeCap = Paint.Cap.ROUND
-    }
-    private val textPaint = Paint().apply {
-        color = Color.BLACK
-        textAlign = Paint.Align.CENTER
-        textSize = dpToPx(16).toFloat()
-    }
     private var step = 0
     private var isRotating = true
     private var currentProgress = 0
@@ -51,6 +38,29 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
             field = value
             postInvalidate()
         }
+    var textColor = Color.BLACK
+        set(value) {
+            field = value
+            textPaint.color = value
+        }
+
+    var rimColor = Color.RED
+        set(value) {
+            field = value
+            outerRim.color = value
+        }
+
+    private val outerRim = Paint().apply {
+        color = rimColor
+        strokeWidth = dpToPx(3).toFloat()
+        style = Paint.Style.STROKE
+        strokeCap = Paint.Cap.ROUND
+    }
+    private val textPaint = Paint().apply {
+        color = textColor
+        textAlign = Paint.Align.CENTER
+        textSize = dpToPx(16).toFloat()
+    }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -125,5 +135,3 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
         isRotating = false
     }
 }
-
-fun dpToPx(dp: Int) = (dp * Resources.getSystem().displayMetrics.density).toInt()

@@ -1,5 +1,6 @@
 package com.hmomeni.circularprogressbar
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -11,6 +12,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         progressBar.progress = 5
+        progressBar.textColor = Color.GREEN
+        progressBar.rimColor = Color.MAGENTA
 
         updateBtn.setOnClickListener {
             progressBar.progress = progressValue.text.toString().toInt()
