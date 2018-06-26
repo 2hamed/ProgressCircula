@@ -14,5 +14,13 @@ class MainActivity : AppCompatActivity() {
         updateBtn.setOnClickListener {
             progressBar.progress = progressValue.text.toString().toInt()
         }
+
+        indeterminateSwitch.setOnCheckedChangeListener { _, isChecked ->
+            progressBar.indeterminate = isChecked
+        }
+
+        showProgressSwitch.setOnCheckedChangeListener { _, isChecked ->
+            progressBar.showProgressText = isChecked
+        }
     }
 }

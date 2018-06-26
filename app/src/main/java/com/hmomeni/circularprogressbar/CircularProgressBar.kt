@@ -11,25 +11,50 @@ class CircularProgressBar(context: Context, attributeSet: AttributeSet? = null, 
 
     constructor(context: Context, attributeSet: AttributeSet? = null) : this(context, attributeSet, 0)
 
-    private val path = Path()
+    private val oval = RectF()
+    private val textBounds = Rect()
+
     private val outerRim = Paint().apply {
         color = Color.RED
         strokeWidth = dpToPx(3).toFloat()
         style = Paint.Style.STROKE
         strokeCap = Paint.Cap.ROUND
     }
-    private val oval = RectF()
-
-    var step = 0
-    var isRotating = true
-    var progress = 0
+    private val textPaint = Paint().apply {
+        color = Color.BLACK
+        textAlign = Paint.Align.CENTER
+        textSize = dpToPx(16).toFloat()
+    }
+    private var step = 0
+    private var isRotating = true
     private var currentProgress = 0
+    var progress = 0
+        set(value) {
+            field = value
+            if (value < 100) {
+                isRotating = true
+                postInvalidate()
+            }
+        }
 
+    var indeterminate = true
+        set(value) {
+            field = value
+            if (value) {
+                isRotating = true
+                postInvalidate()
+            }
+        }
+    var showProgressText = true
+        set(value) {
+            field = value
+            postInvalidate()
+        }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        step += 3
+        step += 4
 
         val width = width.toFloat()
         val height = height.toFloat()
@@ -54,18 +79,38 @@ class CircularProgressBar(context: Context, attributeSet: AttributeSet? = null, 
         if (step >= 360) {
             step = 0
         }
+
+        if (showProgressText) {
+            val text = "$currentProgress%"
+            textPaint.getTextBounds(text, 0, text.length, textBounds)
+            canvas.drawText(text, centerX, centerY - textBounds.exactCenterY(), textPaint)
+        }
     }
 
+    private var isIncrement = true
     private fun calculateSweepAngle(): Float {
-        if (currentProgress < progress) {
-            currentProgress++
-        } else if (currentProgress > progress) {
-            currentProgress--
-        }
+        if (!indeterminate) {
+            if (currentProgress < progress) {
+                currentProgress++
+            } else if (currentProgress > progress) {
+                currentProgress--
+            }
 
-        /*if (currentProgress >= 100) {
-            isRotating = false
-        }*/
+            if (currentProgress >= 100) {
+                isRotating = false
+            }
+        } else {
+            if (isIncrement) {
+                currentProgress++
+            } else {
+                currentProgress--
+            }
+            if (currentProgress >= 100) {
+                isIncrement = false
+            } else if (currentProgress <= 0) {
+                isIncrement = true
+            }
+        }
 
         return currentProgress * 360 / 100F
     }
