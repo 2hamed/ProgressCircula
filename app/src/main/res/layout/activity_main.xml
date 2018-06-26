@@ -8,17 +8,23 @@
 
     <com.hmomeni.progresscircula.ProgressCircula
         android:id="@+id/progressBar"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="150dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:padding="6dp"
+        app:indeterminate="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:progress="40"
+        app:rimColor="@color/colorAccent"
+        app:rimWidth="3dp"
+        app:showProgress="true"
+        app:textColor="#00FF00" />
 
     <EditText
         android:id="@+id/progressValue"

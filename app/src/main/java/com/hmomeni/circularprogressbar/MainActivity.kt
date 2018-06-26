@@ -11,9 +11,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        progressBar.progress = 5
-        progressBar.textColor = Color.GREEN
-        progressBar.rimColor = Color.MAGENTA
 
         updateBtn.setOnClickListener {
             progressBar.progress = progressValue.text.toString().toInt()

@@ -8,7 +8,24 @@ import android.view.View
 
 class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0) : View(context, attributeSet, defStyleAttr) {
 
-    constructor(context: Context, attributeSet: AttributeSet? = null) : this(context, attributeSet, 0)
+    constructor(context: Context, attributeSet: AttributeSet? = null) : this(context, attributeSet, 0) {
+        val a = context.theme.obtainStyledAttributes(
+                attributeSet,
+                R.styleable.ProgressCircula,
+                0, 0)
+
+        try {
+            progress = a.getInteger(R.styleable.ProgressCircula_progress, progress)
+            showProgressText = a.getBoolean(R.styleable.ProgressCircula_showProgress, showProgressText)
+            indeterminate = a.getBoolean(R.styleable.ProgressCircula_indeterminate, indeterminate)
+            rimColor = a.getInteger(R.styleable.ProgressCircula_rimColor, rimColor)
+            rimWidth = a.getDimension(R.styleable.ProgressCircula_rimWidth, rimWidth)
+            textColor = a.getInteger(R.styleable.ProgressCircula_textColor, textColor)
+        } finally {
+            a.recycle()
+        }
+
+    }
 
     private val oval = RectF()
     private val textBounds = Rect()
@@ -29,6 +46,7 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
         set(value) {
             field = value
             if (value) {
+                showProgressText = false
                 isRotating = true
                 postInvalidate()
             }
@@ -50,9 +68,15 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
             outerRim.color = value
         }
 
+    var rimWidth = dpToPx(3).toFloat()
+        set(value) {
+            field = value
+            outerRim.strokeWidth = value
+        }
+
     private val outerRim = Paint().apply {
         color = rimColor
-        strokeWidth = dpToPx(3).toFloat()
+        strokeWidth = rimWidth
         style = Paint.Style.STROKE
         strokeCap = Paint.Cap.ROUND
     }
