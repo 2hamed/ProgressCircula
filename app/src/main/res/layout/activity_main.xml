@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.hmomeni.circularprogressbar.CircularProgressBar
+    <com.hmomeni.progresscircula.ProgressCircula
         android:id="@+id/progressBar"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -91,5 +91,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/indeterminateSwitch" />
+
+    <Switch
+        android:id="@+id/visibilitySwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:checked="true"
+        android:text="Visible?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showProgressSwitch" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.hmomeni.circularprogressbar
+package com.hmomeni.progresscircula
 
 import android.content.Context
 import android.content.res.Resources
@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.view.View
 
 
-class CircularProgressBar(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0) : View(context, attributeSet, defStyleAttr) {
+class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0) : View(context, attributeSet, defStyleAttr) {
 
     constructor(context: Context, attributeSet: AttributeSet? = null) : this(context, attributeSet, 0)
 
@@ -31,6 +31,7 @@ class CircularProgressBar(context: Context, attributeSet: AttributeSet? = null, 
     var progress = 0
         set(value) {
             field = value
+            indeterminate = false
             if (value < 100) {
                 isRotating = true
                 postInvalidate()
