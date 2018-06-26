@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
 android {
     compileSdkVersion 27
@@ -25,6 +27,16 @@ android {
 
 }
 
+buildscript{
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -37,3 +49,28 @@ dependencies {
 repositories {
     mavenCentral()
 }
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'ProgressCircula'
+
+    publishedGroupId = 'com.hmomeni.progresscircula'
+    libraryName = 'ProgressCircula'
+    artifact = 'progresscircula'
+
+    libraryDescription = 'ProgressCircula is a lightweight customisable circular ProgressBar view for Android. It has been written entirely in Kotlin and it includes only one file.'
+
+    siteUrl = 'https://github.com/2hamed/ProgressCircula'
+    gitUrl = 'https://github.com/2hamed/ProgressCircula.git'
+
+    libraryVersion = '0.1'
+
+    developerId = '2hamed'
+    developerName = 'Hamed Momeni'
+    developerEmail = 'hamed.ma7@gmail.comو'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+apply from: './install.gradle'
