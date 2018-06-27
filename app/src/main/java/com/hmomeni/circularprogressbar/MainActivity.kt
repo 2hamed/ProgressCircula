@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         showProgressSwitch.setOnCheckedChangeListener { _, isChecked ->
-            progressBar.showProgressText = isChecked
+            progressBar.showProgress = isChecked
         }
         visibilitySwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked)

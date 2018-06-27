@@ -16,7 +16,7 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
 
         try {
             progress = a.getInteger(R.styleable.ProgressCircula_progress, progress)
-            showProgressText = a.getBoolean(R.styleable.ProgressCircula_showProgress, showProgressText)
+            showProgress = a.getBoolean(R.styleable.ProgressCircula_showProgress, showProgress)
             indeterminate = a.getBoolean(R.styleable.ProgressCircula_indeterminate, indeterminate)
             rimColor = a.getInteger(R.styleable.ProgressCircula_rimColor, rimColor)
             rimWidth = a.getDimension(R.styleable.ProgressCircula_rimWidth, rimWidth)
@@ -46,12 +46,12 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
         set(value) {
             field = value
             if (value) {
-                showProgressText = false
+                showProgress = false
                 isRotating = true
                 postInvalidate()
             }
         }
-    var showProgressText = true
+    var showProgress = true
         set(value) {
             field = value
             postInvalidate()
@@ -115,7 +115,7 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
             step = 0
         }
 
-        if (showProgressText) {
+        if (showProgress) {
             val text = "$currentProgress%"
             textPaint.getTextBounds(text, 0, text.length, textBounds)
             canvas.drawText(text, centerX, centerY - textBounds.exactCenterY(), textPaint)
