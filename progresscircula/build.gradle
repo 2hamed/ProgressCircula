@@ -6,13 +6,11 @@ apply plugin: 'com.jfrog.bintray'
 android {
     compileSdkVersion 27
 
-
-
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode libraryVersionCode
+        versionName libraryVersion
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -27,7 +25,7 @@ android {
 
 }
 
-buildscript{
+buildscript {
     repositories {
         jcenter()
     }
@@ -63,11 +61,12 @@ ext {
     siteUrl = 'https://github.com/2hamed/ProgressCircula'
     gitUrl = 'https://github.com/2hamed/ProgressCircula.git'
 
-    libraryVersion = '0.1'
+    libraryVersion = '0.1.1'
+    libraryVersionCode = 2
 
     developerId = '2hamed'
     developerName = 'Hamed Momeni'
-    developerEmail = 'hamed.ma7@gmail.comو'
+    developerEmail = 'hamed.ma7@gmail.com'
 
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
