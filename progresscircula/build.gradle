@@ -3,6 +3,31 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'ProgressCircula'
+
+    publishedGroupId = 'com.hmomeni.progresscircula'
+    libraryName = 'ProgressCircula'
+    artifact = 'progresscircula'
+
+    libraryDescription = 'ProgressCircula is a lightweight customisable circular ProgressBar view for Android. It has been written entirely in Kotlin and it includes only one file.'
+
+    siteUrl = 'https://github.com/2hamed/ProgressCircula'
+    gitUrl = 'https://github.com/2hamed/ProgressCircula.git'
+
+    libraryVersion = '0.1.1'
+    libraryVersionCode = 2
+
+    developerId = '2hamed'
+    developerName = 'Hamed Momeni'
+    developerEmail = 'hamed.ma7@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
 android {
     compileSdkVersion 27
 
@@ -48,28 +73,4 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'ProgressCircula'
-
-    publishedGroupId = 'com.hmomeni.progresscircula'
-    libraryName = 'ProgressCircula'
-    artifact = 'progresscircula'
-
-    libraryDescription = 'ProgressCircula is a lightweight customisable circular ProgressBar view for Android. It has been written entirely in Kotlin and it includes only one file.'
-
-    siteUrl = 'https://github.com/2hamed/ProgressCircula'
-    gitUrl = 'https://github.com/2hamed/ProgressCircula.git'
-
-    libraryVersion = '0.1.1'
-    libraryVersionCode = 2
-
-    developerId = '2hamed'
-    developerName = 'Hamed Momeni'
-    developerEmail = 'hamed.ma7@gmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-}
 apply from: './install.gradle'
