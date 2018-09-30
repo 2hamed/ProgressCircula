@@ -3,7 +3,6 @@ package com.hmomeni.progresscircula
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 
 
@@ -170,7 +169,7 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
         } else {
             startAngle += if (!isIncrement) {
                 8
-            }else{
+            } else {
                 4
             }
         }
