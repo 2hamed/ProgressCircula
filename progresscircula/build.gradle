@@ -16,8 +16,8 @@ ext {
     siteUrl = 'https://github.com/2hamed/ProgressCircula'
     gitUrl = 'https://github.com/2hamed/ProgressCircula.git'
 
-    libraryVersion = '0.1.1'
-    libraryVersionCode = 2
+    libraryVersion = '0.1.2'
+    libraryVersionCode = 3
 
     developerId = '2hamed'
     developerName = 'Hamed Momeni'

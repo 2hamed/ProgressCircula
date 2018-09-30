@@ -3,10 +3,12 @@ package com.hmomeni.progresscircula
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 
 
 class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0) : View(context, attributeSet, defStyleAttr) {
+    private val TAG = this.javaClass.simpleName!!
 
     constructor(context: Context, attributeSet: AttributeSet? = null) : this(context, attributeSet, 0) {
         val a = context.theme.obtainStyledAttributes(
@@ -79,6 +81,7 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
         strokeWidth = rimWidth
         style = Paint.Style.STROKE
         strokeCap = Paint.Cap.ROUND
+        isAntiAlias = true
     }
     private val textPaint = Paint().apply {
         color = textColor
@@ -89,7 +92,7 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        step += 4
+        step += 2
 
         val width = width.toFloat()
         val height = height.toFloat()
@@ -108,7 +111,9 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
                 centerY - radius,
                 centerX + radius,
                 centerY + radius)
-        canvas.drawArc(oval, step % 360F, calculateSweepAngle(), false, outerRim)
+        calculateStartAngle()
+        calculateSweepAngle()
+        canvas.drawArc(oval, startAngle, sweepAngle, false, outerRim)
         if (isRotating)
             postInvalidateDelayed(10)
         if (step >= 360) {
@@ -123,32 +128,57 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
     }
 
     private var isIncrement = true
-    private fun calculateSweepAngle(): Float {
+    private var sweepAngle: Float = 0f
+
+    private fun calculateSweepAngle() {
         if (!indeterminate) {
             if (currentProgress < progress) {
                 currentProgress++
             } else if (currentProgress > progress) {
                 currentProgress--
             }
-
             if (currentProgress >= 100) {
                 isRotating = false
             }
+            sweepAngle = currentProgress * 360 / 100F
         } else {
             if (isIncrement) {
                 currentProgress++
+                sweepAngle += 4
             } else {
                 currentProgress--
+                sweepAngle -= 4
             }
-            if (currentProgress >= 100) {
+            /*if (currentProgress >= 100) {
                 isIncrement = false
             } else if (currentProgress <= 0) {
                 isIncrement = true
+            }*/
+            if (sweepAngle >= 360) {
+                isIncrement = false
+            } else if (sweepAngle <= 0) {
+                isIncrement = true
             }
         }
+//        Log.d(TAG, "sweepAngle: $sweepAngle")
 
-        return currentProgress * 360 / 100F
     }
+
+    private fun calculateStartAngle() {
+        if (!indeterminate) {
+            startAngle = step % 360F
+        } else {
+            startAngle += if (!isIncrement) {
+                8
+            }else{
+                4
+            }
+        }
+        startAngle %= 360f
+//        Log.d(TAG, "startAngle: $startAngle")
+    }
+
+    private var startAngle: Float = 0f
 
     fun startRotation() {
         isRotating = true
