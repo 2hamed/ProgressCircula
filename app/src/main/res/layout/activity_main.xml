@@ -16,15 +16,15 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:padding="6dp"
-        app:indeterminate="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:progress="40"
-        app:rimColor="@color/colorAccent"
-        app:rimWidth="3dp"
-        app:showProgress="true"
-        app:textColor="#00FF00" />
+        app:pgc_indeterminate="true"
+        app:pgc_progress="40"
+        app:pgc_rimColor="@color/colorAccent"
+        app:pgc_rimWidth="3dp"
+        app:pgc_showProgress="true"
+        app:pgc_textColor="#00FF00" />
 
     <EditText
         android:id="@+id/progressValue"

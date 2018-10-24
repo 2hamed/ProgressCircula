@@ -16,12 +16,12 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
                 0, 0)
 
         try {
-            progress = a.getInteger(R.styleable.ProgressCircula_progress, progress)
-            showProgress = a.getBoolean(R.styleable.ProgressCircula_showProgress, showProgress)
-            indeterminate = a.getBoolean(R.styleable.ProgressCircula_indeterminate, indeterminate)
-            rimColor = a.getInteger(R.styleable.ProgressCircula_rimColor, rimColor)
-            rimWidth = a.getDimension(R.styleable.ProgressCircula_rimWidth, rimWidth)
-            textColor = a.getInteger(R.styleable.ProgressCircula_textColor, textColor)
+            progress = a.getInteger(R.styleable.ProgressCircula_pgc_progress, progress)
+            showProgress = a.getBoolean(R.styleable.ProgressCircula_pgc_showProgress, showProgress)
+            indeterminate = a.getBoolean(R.styleable.ProgressCircula_pgc_indeterminate, indeterminate)
+            rimColor = a.getInteger(R.styleable.ProgressCircula_pgc_rimColor, rimColor)
+            rimWidth = a.getDimension(R.styleable.ProgressCircula_pgc_rimWidth, rimWidth)
+            textColor = a.getInteger(R.styleable.ProgressCircula_pgc_textColor, textColor)
         } finally {
             a.recycle()
         }
