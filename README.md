@@ -1,6 +1,6 @@
 # ProgressCircula
 
-[ ![Download](https://api.bintray.com/packages/2hamed/maven/ProgressCircula/images/download.svg) ](https://bintray.com/2hamed/maven/ProgressCircula/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/2hamed/maven/ProgressCircula/images/download.svg) ](https://bintray.com/2hamed/maven/ProgressCircula/_latestVersion)[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ProgressCircula-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/7523)
 
 ProgressCircula is a lightweight customisable circular ProgressBar view for Android. It has been written entirely in Kotlin and it includes only one file. The purpose was to mimick the behavior of [Telegram](https://telegram.org/) ProgressBar for messages.
 
