@@ -98,10 +98,10 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
         val radius: Float
 
         radius = if (width > height) {
-            height / 2
+            height / 2 - (height / 15)
         } else {
-            width / 2
-        } - paddingBottom
+            width / 2 - (width / 15)
+        }
 
         val centerX = width / 2
         val centerY = height / 2
