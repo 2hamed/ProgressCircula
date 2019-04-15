@@ -11,9 +11,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        progressBar.rimWidth = dpToPx(10).toFloat()
-
         updateBtn.setOnClickListener {
             progressBar.progress = progressValue.text.toString().toInt()
         }

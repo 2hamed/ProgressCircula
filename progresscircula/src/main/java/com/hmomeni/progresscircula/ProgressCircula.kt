@@ -3,6 +3,7 @@ package com.hmomeni.progresscircula
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 
 
@@ -22,6 +23,8 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
             rimColor = a.getInteger(R.styleable.ProgressCircula_pgc_rimColor, rimColor)
             rimWidth = a.getDimension(R.styleable.ProgressCircula_pgc_rimWidth, rimWidth)
             textColor = a.getInteger(R.styleable.ProgressCircula_pgc_textColor, textColor)
+
+            outerRim.strokeWidth = rimWidth
         } finally {
             a.recycle()
         }
@@ -69,7 +72,7 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
             outerRim.color = value
         }
 
-    var rimWidth = dpToPx(3).toFloat()
+    var rimWidth = dpToPx(15).toFloat()
         set(value) {
             field = value
             outerRim.strokeWidth = value
@@ -101,7 +104,7 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
             height / 2
         } else {
             width / 2
-        } - paddingBottom
+        } - paddingBottom - (rimWidth / 2) // subtracting (rimWidth / 2) so that the arc doesn't get out of the window by half
 
         val centerX = width / 2
         val centerY = height / 2
@@ -124,6 +127,7 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
             textPaint.getTextBounds(text, 0, text.length, textBounds)
             canvas.drawText(text, centerX, centerY - textBounds.exactCenterY(), textPaint)
         }
+        Log.d(TAG, "rimWidth:" + outerRim.strokeWidth)
     }
 
     private var isIncrement = true
@@ -148,19 +152,13 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
                 currentProgress--
                 sweepAngle -= 4
             }
-            /*if (currentProgress >= 100) {
-                isIncrement = false
-            } else if (currentProgress <= 0) {
-                isIncrement = true
-            }*/
+
             if (sweepAngle >= 360) {
                 isIncrement = false
             } else if (sweepAngle <= 0) {
                 isIncrement = true
             }
         }
-//        Log.d(TAG, "sweepAngle: $sweepAngle")
-
     }
 
     private fun calculateStartAngle() {
