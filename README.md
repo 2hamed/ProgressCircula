@@ -10,7 +10,7 @@ ProgressCircula is a lightweight customisable circular ProgressBar view for Andr
 ProgressCircula is available through jCenter and you can easily include it in your `build.gradle` file.
 
 ```groovy
-implementation 'com.hmomeni.progresscircula:progresscircula:0.1.3'
+implementation 'com.hmomeni.progresscircula:progresscircula:0.2'
 ```
 
 There are a number of customisation parameters which can be used either in xml or programmatically:
@@ -21,6 +21,7 @@ There are a number of customisation parameters which can be used either in xml o
 * `pgc_showProgressText`: Whether to show the progress text or not
 * `pgc_indeterminate`: This makes the progress bar indeterminate
 * `pgc_progress`: With this you can update the progress of the progress bar, should be >=0 and <= 100
+* `pgc_speed`: this is the speed factor. The default is set to 4, the more the faster
 
 ```xml
 <com.hmomeni.progresscircula.ProgressCircula

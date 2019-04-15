@@ -8,7 +8,7 @@ import android.view.View
 
 
 class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0) : View(context, attributeSet, defStyleAttr) {
-    private val TAG = this.javaClass.simpleName!!
+    private val TAG = this.javaClass.simpleName
 
     constructor(context: Context, attributeSet: AttributeSet? = null) : this(context, attributeSet, 0) {
         val a = context.theme.obtainStyledAttributes(
