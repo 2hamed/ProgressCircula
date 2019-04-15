@@ -21,8 +21,9 @@
         app:pgc_indeterminate="true"
         app:pgc_progress="40"
         app:pgc_rimColor="@color/colorAccent"
-        app:pgc_rimWidth="15dp"
+        app:pgc_rimWidth="5dp"
         app:pgc_showProgress="true"
+        app:pgc_speed="4"
         app:pgc_textColor="#00FF00" />
 
     <EditText

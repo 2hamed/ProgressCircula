@@ -23,8 +23,7 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
             rimColor = a.getInteger(R.styleable.ProgressCircula_pgc_rimColor, rimColor)
             rimWidth = a.getDimension(R.styleable.ProgressCircula_pgc_rimWidth, rimWidth)
             textColor = a.getInteger(R.styleable.ProgressCircula_pgc_textColor, textColor)
-
-            outerRim.strokeWidth = rimWidth
+            speed = a.getFloat(R.styleable.ProgressCircula_pgc_textColor, speed)
         } finally {
             a.recycle()
         }
@@ -33,7 +32,7 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
 
     private val oval = RectF()
     private val textBounds = Rect()
-    private var step = 0
+    private var step = 0f
     private var isRotating = true
     private var currentProgress = 0
     var progress = 0
@@ -78,6 +77,8 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
             outerRim.strokeWidth = value
         }
 
+    var speed = 4f
+
     private val outerRim = Paint().apply {
         color = rimColor
         strokeWidth = rimWidth
@@ -94,7 +95,9 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        step += 2
+        if (!indeterminate) {
+            step += 3 * speed
+        }
 
         val width = width.toFloat()
         val height = height.toFloat()
@@ -117,9 +120,9 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
         calculateSweepAngle()
         canvas.drawArc(oval, startAngle, sweepAngle, false, outerRim)
         if (isRotating)
-            postInvalidateDelayed(10)
+            postInvalidate()
         if (step >= 360) {
-            step = 0
+            step = 0f
         }
 
         if (showProgress) {
@@ -127,11 +130,11 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
             textPaint.getTextBounds(text, 0, text.length, textBounds)
             canvas.drawText(text, centerX, centerY - textBounds.exactCenterY(), textPaint)
         }
-        Log.d(TAG, "rimWidth:" + outerRim.strokeWidth)
     }
 
     private var isIncrement = true
     private var sweepAngle: Float = 0f
+    private var sweepStep = 4
 
     private fun calculateSweepAngle() {
         if (!indeterminate) {
@@ -147,10 +150,10 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
         } else {
             if (isIncrement) {
                 currentProgress++
-                sweepAngle += 4
+                sweepAngle += sweepStep * speed
             } else {
                 currentProgress--
-                sweepAngle -= 4
+                sweepAngle -= sweepStep * speed
             }
 
             if (sweepAngle >= 360) {
@@ -164,15 +167,17 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
     private fun calculateStartAngle() {
         if (!indeterminate) {
             startAngle = step % 360F
+            if (step > 360) {
+                step = 0f
+            }
         } else {
             startAngle += if (!isIncrement) {
-                8
+                sweepStep * 2
             } else {
-                4
-            }
+                sweepStep
+            } * speed
         }
         startAngle %= 360f
-//        Log.d(TAG, "startAngle: $startAngle")
     }
 
     private var startAngle: Float = 0f
