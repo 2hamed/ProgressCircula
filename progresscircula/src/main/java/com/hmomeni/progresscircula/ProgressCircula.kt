@@ -23,7 +23,7 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
             rimColor = a.getInteger(R.styleable.ProgressCircula_pgc_rimColor, rimColor)
             rimWidth = a.getDimension(R.styleable.ProgressCircula_pgc_rimWidth, rimWidth)
             textColor = a.getInteger(R.styleable.ProgressCircula_pgc_textColor, textColor)
-            speed = a.getFloat(R.styleable.ProgressCircula_pgc_textColor, speed)
+            speed = a.getFloat(R.styleable.ProgressCircula_pgc_speed, speed)
         } finally {
             a.recycle()
         }

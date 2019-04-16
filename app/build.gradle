@@ -32,5 +32,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation project(':progresscircula')
-//    implementation 'com.hmomeni.progresscircula:progresscircula:0.1.1'
+//    implementation 'com.hmomeni.progresscircula:progresscircula:0.2.1'
 }
