@@ -3,11 +3,11 @@ package com.hmomeni.progresscircula
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 
 
 class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0) : View(context, attributeSet, defStyleAttr) {
+
     private val TAG = this.javaClass.simpleName
 
     constructor(context: Context, attributeSet: AttributeSet? = null) : this(context, attributeSet, 0) {
@@ -23,7 +23,7 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
             rimColor = a.getInteger(R.styleable.ProgressCircula_pgc_rimColor, rimColor)
             rimWidth = a.getDimension(R.styleable.ProgressCircula_pgc_rimWidth, rimWidth)
             textColor = a.getInteger(R.styleable.ProgressCircula_pgc_textColor, textColor)
-            speed = a.getFloat(R.styleable.ProgressCircula_pgc_textColor, speed)
+            speed = a.getFloat(R.styleable.ProgressCircula_pgc_speed, speed)
         } finally {
             a.recycle()
         }
@@ -35,6 +35,7 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
     private var step = 0f
     private var isRotating = true
     private var currentProgress = 0
+
     var progress = 0
         set(value) {
             field = value
@@ -77,7 +78,7 @@ class ProgressCircula(context: Context, attributeSet: AttributeSet? = null, defS
             outerRim.strokeWidth = value
         }
 
-    var speed = 4f
+    var speed = 1f
 
     private val outerRim = Paint().apply {
         color = rimColor
