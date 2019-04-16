@@ -7,5 +7,6 @@
         <attr name="pgc_rimColor" format="color" />
         <attr name="pgc_progress" format="integer" />
         <attr name="pgc_rimWidth" format="dimension" />
+        <attr name="pgc_speed" format="float" />
     </declare-styleable>
 </resources>
