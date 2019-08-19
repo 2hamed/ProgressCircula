@@ -18,7 +18,7 @@ There are a number of customisation parameters which can be used either in xml o
 * `pgc_rimColor`: This specifies the color of ProgressBar ring
 * `pgc_rimWidth`: The width of the progress ring in pixels
 * `pgc_textColor`: Color of the progress text
-* `pgc_showProgressText`: Whether to show the progress text or not
+* `pgc_showProgress`: Whether to show the progress text or not
 * `pgc_indeterminate`: This makes the progress bar indeterminate
 * `pgc_progress`: With this you can update the progress of the progress bar, should be >=0 and <= 100
 * `pgc_speed`: this is the speed factor. The default is set to 4, the more the faster
