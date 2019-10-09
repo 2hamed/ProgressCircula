@@ -33,5 +33,6 @@ There are a number of customisation parameters which can be used either in xml o
         app:pgc_rimColor="@color/colorAccent"
         app:pgc_rimWidth="3dp"
         app:pgc_showProgress="true"
+        app:pgc_speed="4"
         app:pgc_textColor="#00FF00" />
 ```
